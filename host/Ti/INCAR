@@ -1,0 +1,13 @@
+LWAVE = .FALSE.
+LCHARG= .FALSE.
+PREC    = Accurate
+LREAL   = AUTO
+ADDGRID = .TRUE.
+POTIM   = 0.1
+SIGMA   = 0.05
+IBRION  = 2
+NSW     = 100
+ENCUT   =700
+EDIFF   = 1e-8
+EDIFFG  = -1e-3
+ISIF    = 3

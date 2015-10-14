@@ -1,5 +1,11 @@
-import numpy as np
+# Assuming you've done `export MAPI_KEY="USER_API_KEY"` at the command line
+# See materialsproject.org/dashboard to get your API key
 
+from pymatgen import MPRester
+import numpy as np
+import os
+key = os.environ['MAPI_KEY']
+m = MPRester(key)
 
 def makekpoint(n0, Na, Nc, eta):
         ###############INPUTS###############
@@ -70,3 +76,16 @@ def makekpoint(n0, Na, Nc, eta):
         f.write('0 0 0\n')
         f.close()
 
+def get_data(mp_id):
+
+        # divide k-point density by 2 for time-inversion symmetry
+        num_kpoints = m.query(mp_id, 
+                ["elasticity.calculations.kpoint_density"])[0]['elasticity.calculations.kpoint_density']/2
+
+        # for testing only, until we get Interstitial structures uploaded
+        return [num_kpoints]
+
+if __name__ == "__main__":
+        num_kpoints = get_data('mp-46')
+        # once we get structures
+        #makekpoint(num_kpoints, Na, Nc, c/a)
